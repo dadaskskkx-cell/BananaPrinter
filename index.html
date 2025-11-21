@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>BananaPrinter - 2D to Real</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">BananaPrinter</div>
+            <div class="settings-icon" id="settingsBtn">
+                ⚙️
+            </div>
+        </header>
+
+        <!-- Main Canvas Area -->
+        <main class="canvas-area">
+
+            <!-- Background Scattered Cards (Decoration) -->
+            <div class="scattered-card card-1">
+                <img src="sketch.png" alt="Idea">
+            </div>
+            <div class="scattered-card card-2">
+                <span>ZO</span>
+            </div>
+
+            <!-- The Magic Stage -->
+            <div class="stage-container">
+                <div class="card-wrapper" id="cardWrapper">
+                    <!-- The Input (Sketch) -->
+                    <div class="card input-card" id="inputCard">
+                        <div class="upload-hint" id="uploadHint">
+                            <div class="plus-icon">+</div>
+                            <span>Tap to Upload</span>
+                        </div>
+                        <img src="sketch.png" alt="Sketch" id="inputImage">
+                        <input type="file" id="fileInput" accept="image/*" hidden>
+                        <div class="card-label">Prototype</div>
+                    </div>
+
+                    <!-- The Output (Render) -->
+                    <div class="card output-card" id="outputCard">
+                        <img src="giftbox.png" alt="Render" id="outputImage">
+                        <div class="card-label">Real Product</div>
+                        <div class="shine-effect"></div>
+                        <button class="download-btn" id="downloadBtn" style="display: none;">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <!-- Scanning Overlay -->
+                    <div class="scan-line" id="scanLine"></div>
+                </div>
+            </div>
+
+        </main>
+
+        <!-- Bottom Control Panel -->
+        <div class="control-panel">
+            <div class="panel-content">
+                <div class="text-area">
+                    <h2 id="statusText">Ready to Create</h2>
+                    <p>Turn your sketch into reality</p>
+                </div>
+                <button class="magic-button" id="magicBtn">
+                    <div class="btn-inner"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Settings Panel (Hidden by default) -->
+        <div class="settings-panel" id="settingsPanel">
+            <h3>Cloud AI Settings</h3>
+            <p>Configure your AI provider details below.</p>
+
+            <label>Prompt (Style Description)</label>
+            <textarea id="promptInput" rows="3"
+                placeholder="Describe the style...">3D voxel pixel art character, lego style, cute 3D render, isometric view, high quality, clay material, soft lighting. Maintain the pose and composition of the original image.</textarea>
+
+            <label>Creativity Strength (Similarity)</label>
+            <div class="slider-container">
+                <input type="range" id="strengthInput" min="0.1" max="0.9" step="0.05" value="0.45">
+                <span id="strengthValue">0.45</span>
+            </div>
+            <p style="font-size: 10px; color: #8E8E93; margin-top: -8px;">Lower = Like Original, Higher = More AI Style
+            </p>
+
+            <label>API URL (Endpoint)</label>
+            <input type="text" id="apiUrlInput" placeholder="https://ark.cn-beijing.volces.com/..."
+                value="https://ark.cn-beijing.volces.com/api/v3/images/generations">
+
+            <label>Model ID (Endpoint ID)</label>
+            <input type="text" id="modelIdInput" placeholder="ep-2024..." value="ep-20251103145127-pvgt2">
+
+            <label>API Key</label>
+            <input type="password" id="apiKeyInput" placeholder="sk-..." value="3fdace7f-4efb-4e41-a41f-804adc10a9fd">
+
+            <div class="settings-actions">
+                <button id="saveKeyBtn">Save & Close</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
